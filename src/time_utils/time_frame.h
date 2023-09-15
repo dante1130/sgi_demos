@@ -2,6 +2,7 @@
 #define TIME_FRAME_H
 
 typedef struct {
+	double accumulator;
 	double deltaTime;
 	int previousTime;
 	int currentTime;

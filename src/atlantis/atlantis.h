@@ -56,10 +56,10 @@ extern fishRec momWhale;
 extern fishRec babyWhale;
 extern fishRec dolph;
 
-extern void FishTransform(fishRec *);
-extern void WhalePilot(fishRec *);
-extern void SharkPilot(fishRec *);
+extern void FishTransform(fishRec*);
+extern void WhalePilot(fishRec*);
+extern void SharkPilot(fishRec*);
 extern void SharkMiss(int);
-extern void DrawWhale(fishRec *);
-extern void DrawShark(fishRec *);
-extern void DrawDolphin(fishRec *);
+extern void DrawWhale(fishRec*);
+extern void DrawShark(fishRec*);
+extern void DrawDolphin(fishRec*);
