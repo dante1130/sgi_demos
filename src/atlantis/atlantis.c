@@ -134,7 +134,6 @@ void Reshape(int width, int height) {
 	gluPerspective(400.0, 2.0, 1.0, 2000000.0);
 	glMatrixMode(GL_MODELVIEW);
 }
-#include <stdio.h>
 
 void Animate(void) {
 	TimeFrameUpdate(&timeFrame, glutGet(GLUT_ELAPSED_TIME));
