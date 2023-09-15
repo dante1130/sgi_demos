@@ -44,11 +44,11 @@
 #define WHALESPEED 250.0
 
 typedef struct _fishRec {
-    float x, y, z, phi, theta, psi, v;
-    float xt, yt, zt;
-    float htail, vtail;
-    float dtheta;
-    int spurt, attack;
+	float x, y, z, phi, theta, psi, v;
+	float xt, yt, zt;
+	float htail, vtail;
+	float dtheta;
+	int spurt, attack;
 } fishRec;
 
 extern fishRec sharks[NUM_SHARKS];

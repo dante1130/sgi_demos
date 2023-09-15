@@ -51,215 +51,185 @@ fishRec dolph;
 
 GLboolean moving;
 
-void
-InitFishs(void)
-{
-    int i;
+void InitFishs(void) {
+	int i;
 
-    for (i = 0; i < NUM_SHARKS; i++) {
-        sharks[i].x = 70000.0 + rand() % 6000;
-        sharks[i].y = rand() % 6000;
-        sharks[i].z = rand() % 6000;
-        sharks[i].psi = rand() % 360 - 180.0;
-        sharks[i].v = 1.0;
-    }
+	for (i = 0; i < NUM_SHARKS; i++) {
+		sharks[i].x = 70000.0 + rand() % 6000;
+		sharks[i].y = rand() % 6000;
+		sharks[i].z = rand() % 6000;
+		sharks[i].psi = rand() % 360 - 180.0;
+		sharks[i].v = 1.0;
+	}
 
-    dolph.x = 30000.0;
-    dolph.y = 0.0;
-    dolph.z = 6000.0;
-    dolph.psi = 90.0;
-    dolph.theta = 0.0;
-    dolph.v = 3.0;
+	dolph.x = 30000.0;
+	dolph.y = 0.0;
+	dolph.z = 6000.0;
+	dolph.psi = 90.0;
+	dolph.theta = 0.0;
+	dolph.v = 3.0;
 
-    momWhale.x = 70000.0;
-    momWhale.y = 0.0;
-    momWhale.z = 0.0;
-    momWhale.psi = 90.0;
-    momWhale.theta = 0.0;
-    momWhale.v = 3.0;
+	momWhale.x = 70000.0;
+	momWhale.y = 0.0;
+	momWhale.z = 0.0;
+	momWhale.psi = 90.0;
+	momWhale.theta = 0.0;
+	momWhale.v = 3.0;
 
-    babyWhale.x = 60000.0;
-    babyWhale.y = -2000.0;
-    babyWhale.z = -2000.0;
-    babyWhale.psi = 90.0;
-    babyWhale.theta = 0.0;
-    babyWhale.v = 3.0;
+	babyWhale.x = 60000.0;
+	babyWhale.y = -2000.0;
+	babyWhale.z = -2000.0;
+	babyWhale.psi = 90.0;
+	babyWhale.theta = 0.0;
+	babyWhale.v = 3.0;
 }
 
-void
-Init(void)
-{
-    static float ambient[] =
-    {0.1, 0.1, 0.1, 1.0};
-    static float diffuse[] =
-    {1.0, 1.0, 1.0, 1.0};
-    static float position[] =
-    {0.0, 1.0, 0.0, 0.0};
-    static float mat_shininess[] =
-    {90.0};
-    static float mat_specular[] =
-    {0.8, 0.8, 0.8, 1.0};
-    static float mat_diffuse[] =
-    {0.46, 0.66, 0.795, 1.0};
-    static float mat_ambient[] =
-    {0.0, 0.1, 0.2, 1.0};
-    static float lmodel_ambient[] =
-    {0.4, 0.4, 0.4, 1.0};
-    static float lmodel_localviewer[] =
-    {0.0};
-    GLfloat map1[4] =
-    {0.0, 0.0, 0.0, 0.0};
-    GLfloat map2[4] =
-    {0.0, 0.0, 0.0, 0.0};
+void Init(void) {
+	static float ambient[] = {0.1, 0.1, 0.1, 1.0};
+	static float diffuse[] = {1.0, 1.0, 1.0, 1.0};
+	static float position[] = {0.0, 1.0, 0.0, 0.0};
+	static float mat_shininess[] = {90.0};
+	static float mat_specular[] = {0.8, 0.8, 0.8, 1.0};
+	static float mat_diffuse[] = {0.46, 0.66, 0.795, 1.0};
+	static float mat_ambient[] = {0.0, 0.1, 0.2, 1.0};
+	static float lmodel_ambient[] = {0.4, 0.4, 0.4, 1.0};
+	static float lmodel_localviewer[] = {0.0};
+	GLfloat map1[4] = {0.0, 0.0, 0.0, 0.0};
+	GLfloat map2[4] = {0.0, 0.0, 0.0, 0.0};
 
-    glFrontFace(GL_CW);
+	glFrontFace(GL_CW);
 
-    glDepthFunc(GL_LEQUAL);
-    glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_DEPTH_TEST);
 
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
-    glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, lmodel_localviewer);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+	glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, lmodel_localviewer);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_diffuse);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_ambient);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_ambient);
 
-    InitFishs();
+	InitFishs();
 
-    glClearColor(0.0, 0.5, 0.9, 0.0);
+	glClearColor(0.0, 0.5, 0.9, 0.0);
 }
 
-void
-Reshape(int width, int height)
-{
-    glViewport(0, 0, width, height);
+void Reshape(int width, int height) {
+	glViewport(0, 0, width, height);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(400.0, 2.0, 1.0, 2000000.0);
-    glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(400.0, 2.0, 1.0, 2000000.0);
+	glMatrixMode(GL_MODELVIEW);
 }
 
-void
-Animate(void)
-{
-    int i;
+void Animate(void) {
+	int i;
 
-    for (i = 0; i < NUM_SHARKS; i++) {
-        SharkPilot(&sharks[i]);
-        SharkMiss(i);
-    }
-    WhalePilot(&dolph);
-    dolph.phi++;
-    glutPostRedisplay();
-    WhalePilot(&momWhale);
-    momWhale.phi++;
-    WhalePilot(&babyWhale);
-    babyWhale.phi++;
+	for (i = 0; i < NUM_SHARKS; i++) {
+		SharkPilot(&sharks[i]);
+		SharkMiss(i);
+	}
+	WhalePilot(&dolph);
+	dolph.phi++;
+	glutPostRedisplay();
+	WhalePilot(&momWhale);
+	momWhale.phi++;
+	WhalePilot(&babyWhale);
+	babyWhale.phi++;
 }
 
-void
-Key(unsigned char key, int x, int y)
-{
-    switch (key) {
-    case 27:           /* Esc will quit */
-        exit(1);
-        break;
-    case ' ':          /* space will advance frame */
-        if (!moving) {
-            Animate();
-        }
-    }
+void Key(unsigned char key, int x, int y) {
+	switch (key) {
+		case 27: /* Esc will quit */
+			exit(1);
+			break;
+		case ' ': /* space will advance frame */
+			if (!moving) {
+				Animate();
+			}
+	}
 }
 
-void
-Display(void)
-{
-    int i;
+void Display(void) {
+	int i;
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for (i = 0; i < NUM_SHARKS; i++) {
-        glPushMatrix();
-        FishTransform(&sharks[i]);
-        DrawShark(&sharks[i]);
-        glPopMatrix();
-    }
+	for (i = 0; i < NUM_SHARKS; i++) {
+		glPushMatrix();
+		FishTransform(&sharks[i]);
+		DrawShark(&sharks[i]);
+		glPopMatrix();
+	}
 
-    glPushMatrix();
-    FishTransform(&dolph);
-    DrawDolphin(&dolph);
-    glPopMatrix();
+	glPushMatrix();
+	FishTransform(&dolph);
+	DrawDolphin(&dolph);
+	glPopMatrix();
 
-    glPushMatrix();
-    FishTransform(&momWhale);
-    DrawWhale(&momWhale);
-    glPopMatrix();
+	glPushMatrix();
+	FishTransform(&momWhale);
+	DrawWhale(&momWhale);
+	glPopMatrix();
 
-    glPushMatrix();
-    FishTransform(&babyWhale);
-    glScalef(0.45, 0.45, 0.3);
-    DrawWhale(&babyWhale);
-    glPopMatrix();
+	glPushMatrix();
+	FishTransform(&babyWhale);
+	glScalef(0.45, 0.45, 0.3);
+	DrawWhale(&babyWhale);
+	glPopMatrix();
 
-    glutSwapBuffers();
+	glutSwapBuffers();
 }
 
-void
-Visible(int state)
-{
-    if (state == GLUT_VISIBLE) {
-        if (moving)
-            glutIdleFunc(Animate);
-    } else {
-        if (moving)
-            glutIdleFunc(NULL);
-    }
+void Visible(int state) {
+	if (state == GLUT_VISIBLE) {
+		if (moving) glutIdleFunc(Animate);
+	} else {
+		if (moving) glutIdleFunc(NULL);
+	}
 }
 
-void
-menuSelect(int value)
-{
-    switch (value) {
-    case 1:
-        moving = GL_TRUE;
-        glutIdleFunc(Animate);
-        break;
-    case 2:
-        moving = GL_FALSE;;
-        glutIdleFunc(NULL);
-        break;
-    case 3:
-        exit(0);
-        break;
-    }
+void menuSelect(int value) {
+	switch (value) {
+		case 1:
+			moving = GL_TRUE;
+			glutIdleFunc(Animate);
+			break;
+		case 2:
+			moving = GL_FALSE;
+			;
+			glutIdleFunc(NULL);
+			break;
+		case 3:
+			exit(0);
+			break;
+	}
 }
 
-int
-main(int argc, char **argv)
-{
-    glutInitWindowSize(500, 250);
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-    glutCreateWindow("GLUT Atlantis Demo");
-    Init();
-    glutDisplayFunc(Display);
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Key);
-    moving = GL_TRUE;
-    glutIdleFunc(Animate);
-    glutVisibilityFunc(Visible);
-    glutCreateMenu(menuSelect);
-    glutAddMenuEntry("Start motion", 1);
-    glutAddMenuEntry("Stop motion", 2);
-    glutAddMenuEntry("Quit", 3);
-    glutAttachMenu(GLUT_RIGHT_BUTTON);
-    glutMainLoop();
-    return 0;             /* ANSI C requires main to return int. */
+int main(int argc, char **argv) {
+	glutInitWindowSize(500, 250);
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+	glutCreateWindow("GLUT Atlantis Demo");
+	Init();
+	glutDisplayFunc(Display);
+	glutReshapeFunc(Reshape);
+	glutKeyboardFunc(Key);
+	moving = GL_TRUE;
+	glutIdleFunc(Animate);
+	glutVisibilityFunc(Visible);
+	glutCreateMenu(menuSelect);
+	glutAddMenuEntry("Start motion", 1);
+	glutAddMenuEntry("Stop motion", 2);
+	glutAddMenuEntry("Quit", 3);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+	glutMainLoop();
+	return 0; /* ANSI C requires main to return int. */
 }
