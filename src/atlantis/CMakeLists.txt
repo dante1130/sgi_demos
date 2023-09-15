@@ -12,6 +12,11 @@ target_include_directories(atlantis SYSTEM PRIVATE
 	${LIB_DIR}/freeglut/include
 )
 
-target_link_libraries(atlantis PRIVATE 
+target_include_directories(atlantis PUBLIC
+	${SRC_DIR}/time_utils
+)
+
+target_link_libraries(atlantis PUBLIC 
 	freeglut_static
+	time_utils
 )

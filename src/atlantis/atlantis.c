@@ -42,7 +42,10 @@
 #include <string.h>
 #include <math.h>
 #include <GL/glut.h>
+#include <time_frame.h>
 #include "atlantis.h"
+
+TimeFrame timeFrame;
 
 fishRec sharks[NUM_SHARKS];
 fishRec momWhale;
@@ -116,6 +119,7 @@ void Init(void) {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_ambient);
 
 	InitFishs();
+	TimeFrameInit(&timeFrame);
 
 	glClearColor(0.0, 0.5, 0.9, 0.0);
 }
@@ -130,9 +134,9 @@ void Reshape(int width, int height) {
 }
 
 void Animate(void) {
-	int i;
+	TimeFrameUpdate(&timeFrame, glutGet(GLUT_ELAPSED_TIME));
 
-	for (i = 0; i < NUM_SHARKS; i++) {
+	for (int i = 0; i < NUM_SHARKS; i++) {
 		SharkPilot(&sharks[i]);
 		SharkMiss(i);
 	}
