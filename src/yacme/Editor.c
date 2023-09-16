@@ -71,33 +71,33 @@ void ApplyCMap(void);
 void YACME_makeMenu(void);
 extern void invertmat(float from[4][4], float to[4][4]);
 
-static UserPoint *FreePointList = NULL;
+static UserPoint* FreePointList = NULL;
 #define newPoint(point) newItem(point, FreePointList, UserPoint)
 #define freePoint(point) freeItem(point, FreePointList)
 
 typedef struct {
 	int type, cmpnt, ndx;
 
-	UserPoint *upoint;
+	UserPoint* upoint;
 } PickObject;
 
 struct {
 	int leftdown, middledown, rightdown;
 } mouse;
 
-void YACME_pick(int mx, int my, PickObject *obj);
-void YACME_update(int cmpnt, UserPoint *upoint);
-int YACME_get(unsigned long *table);
+void YACME_pick(int mx, int my, PickObject* obj);
+void YACME_update(int cmpnt, UserPoint* upoint);
+int YACME_get(unsigned long* table);
 
-void DeletePoint(int cmpnt, UserPoint *upoint);
+void DeletePoint(int cmpnt, UserPoint* upoint);
 int MovePoint(int, int);
 int MoveTangente(int, int, int);
-int InsertPoint(PickObject *obj);
+int InsertPoint(PickObject* obj);
 
 void GetPolynome(int mode, float a0, float b0, float t0, float a1, float b1,
                  float t1, float coeff[4]);
-void OrthoTransform(int mx, int my, float *x, float *y);
-float Polynome4(float x, float *polynome);
+void OrthoTransform(int mx, int my, float* x, float* y);
+float Polynome4(float x, float* polynome);
 
 static int DrawCurve[4] =
     {
@@ -109,7 +109,7 @@ static int DrawCurve[4] =
            modifiedCurve[4] = {1, 1, 1, 1}, YACME_refresh = MANUAL,
            curCmpnt = 0, curType = 0, Mousex, Mousey;
 
-static float *TabCmpnt;
+static float* TabCmpnt;
 static long YACME_menu = 0, YACME_switch_menu = 0, YACME_mode_menu,
             YACME_edit_menu;
 static int YACME_win = 0, W, H, update = 0;
@@ -130,10 +130,10 @@ static int dimlut;
 /*---------------------------------------------------------------------------*/
 /*			YACME_init
 /*---------------------------------------------------------------------------*/
-void YACME_init(int x, int y, int w, int h, int dim, float **list,
+void YACME_init(int x, int y, int w, int h, int dim, float** list,
                 CallBack newmapFunc, CallBack applyFunc) {
 	int i, j;
-	UserPoint *userpoint;
+	UserPoint* userpoint;
 
 	if (YACME_win) return;
 
@@ -142,7 +142,7 @@ void YACME_init(int x, int y, int w, int h, int dim, float **list,
 	applyCB = applyFunc;
 
 	if (*list == NULL) {
-		*list = TabCmpnt = (float *)malloc(4 * dimlut * sizeof(float));
+		*list = TabCmpnt = (float*)malloc(4 * dimlut * sizeof(float));
 		for (i = 0; i < 4; i++) {
 			newPoint(userPoint[i]);
 			userpoint = userPoint[i];
@@ -246,7 +246,7 @@ void YACME_init(int x, int y, int w, int h, int dim, float **list,
 /*	Key
 /*---------------------------------------------------------------------------*/
 static void Key(unsigned char key, int x, int y) {
-	UserPoint *previousPoint;
+	UserPoint* previousPoint;
 #if 1
 	switch (key) {
 		case 27: /* Escape */
@@ -562,7 +562,7 @@ static void YACME_menuFunc(int item) {
 /*---------------------------------------------------------------------------*/
 /*	output
 /*---------------------------------------------------------------------------*/
-static void output(float x, float y, char *string) {
+static void output(float x, float y, char* string) {
 	int len, i;
 
 	glRasterPos2f(x, y);
@@ -577,8 +577,8 @@ static void output(float x, float y, char *string) {
 /*---------------------------------------------------------------------------*/
 static void Redraw(void) {
 	int i, j, ndx, cmpnt, priority[4];
-	Tangente *tg;
-	UserPoint *upoint;
+	Tangente* tg;
+	UserPoint* upoint;
 	char string[256];
 
 	if (update) {
@@ -769,11 +769,11 @@ static void Redraw(void) {
 /*---------------------------------------------------------------------------*/
 /*			YACME_pick
 /*---------------------------------------------------------------------------*/
-void YACME_pick(int mousex, int mousey, PickObject *obj) {
+void YACME_pick(int mousex, int mousey, PickObject* obj) {
 	int cmpnt, i, priority[4];
 	float x, y, val;
-	Tangente *tg;
-	UserPoint *upoint;
+	Tangente* tg;
+	UserPoint* upoint;
 	float pickrad;
 
 	obj->type = -1;
@@ -853,10 +853,10 @@ void YACME_pick(int mousex, int mousey, PickObject *obj) {
 /*---------------------------------------------------------------------------*/
 /*			YACME_update
 /*---------------------------------------------------------------------------*/
-void YACME_update(int cmpnt, UserPoint *upoint) {
+void YACME_update(int cmpnt, UserPoint* upoint) {
 	int i;
 	float val, t0, t1;
-	Tangente *tg;
+	Tangente* tg;
 
 	tg = &upoint->tg;
 	if (tg->x1 != tg->x0) {
@@ -905,9 +905,9 @@ void YACME_update(int cmpnt, UserPoint *upoint) {
 /*---------------------------------------------------------------------------*/
 /*			freePointList
 /*---------------------------------------------------------------------------*/
-static void freePointList(UserPoint *upoint) {
+static void freePointList(UserPoint* upoint) {
 	while (upoint != NULL) {
-		UserPoint *unext = upoint->next;
+		UserPoint* unext = upoint->next;
 		freePoint(upoint);
 		upoint = unext;
 	}
@@ -916,7 +916,7 @@ static void freePointList(UserPoint *upoint) {
 /*---------------------------------------------------------------------------*/
 /*			clonePointList
 /*---------------------------------------------------------------------------*/
-static UserPoint *clonePointList(UserPoint *base) {
+static UserPoint* clonePointList(UserPoint* base) {
 	UserPoint *clone, *upoint;
 
 	if (base == NULL) return NULL;
@@ -959,7 +959,7 @@ void ApplyCMap(void) {
 /*---------------------------------------------------------------------------*/
 void ResetCMap(void) {
 	int i;
-	UserPoint *upoint;
+	UserPoint* upoint;
 
 	for (i = 0; i < 4; i++)
 		if (modifiedCurve[i]) {
@@ -975,10 +975,10 @@ void ResetCMap(void) {
 /*---------------------------------------------------------------------------*/
 /*			InsertPoint
 /*---------------------------------------------------------------------------*/
-int InsertPoint(PickObject *obj) {
+int InsertPoint(PickObject* obj) {
 	float dx, dy, slope, coeff[4];
 	int i;
-	Tangente *tg;
+	Tangente* tg;
 	UserPoint *upoint, *userpoint;
 
 	upoint = userPoint[obj->cmpnt];
@@ -1046,7 +1046,7 @@ int InsertPoint(PickObject *obj) {
 /*---------------------------------------------------------------------------*/
 /*			DeletePoint
 /*---------------------------------------------------------------------------*/
-void DeletePoint(int cmpnt, UserPoint *upoint) {
+void DeletePoint(int cmpnt, UserPoint* upoint) {
 	if (upoint == NULL || upoint->last == NULL || upoint->next == NULL) return;
 	upoint->last->next = upoint->next;
 	upoint->next->last = upoint->last;
@@ -1088,7 +1088,7 @@ int MovePoint(int mousex, int mousey) {
 /*---------------------------------------------------------------------------*/
 int MoveTangente(int sens, int mousex, int mousey) {
 	float x, y, dx, dy, slope;
-	Tangente *tg;
+	Tangente* tg;
 
 	OrthoTransform(mousex, mousey, &x, &y);
 
@@ -1213,7 +1213,7 @@ void GetPolynome(int mode, float a0, float b0, float t0, float a1, float b1,
 /*---------------------------------------------------------------------------*/
 /*			OrthoTransform
 /*---------------------------------------------------------------------------*/
-void OrthoTransform(int mx, int my, float *x, float *y) {
+void OrthoTransform(int mx, int my, float* x, float* y) {
 	float xf, yf;
 
 	xf = (float)mx;
@@ -1233,7 +1233,7 @@ void OrthoTransform(int mx, int my, float *x, float *y) {
 /*---------------------------------------------------------------------------*/
 /*			Polynome4
 /*---------------------------------------------------------------------------*/
-float Polynome4(float x, float *coeff) {
+float Polynome4(float x, float* coeff) {
 	int j;
 	float val = coeff[0];
 
@@ -1249,10 +1249,10 @@ float Polynome4(float x, float *coeff) {
 /*			MAIN
 /*---------------------------------------------------------------------------*/
 #include "RGBA.h"
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	glutInit(&argc, argv);
 
-	YACME_init(0, 0, WINWIDTH, WINHEIGHT, 256, (float **)RGBA, NULL, NULL);
+	YACME_init(0, 0, WINWIDTH, WINHEIGHT, 256, (float**)RGBA, NULL, NULL);
 	glutMainLoop();
 	return 0; /* ANSI C requires main to return int. */
 }
