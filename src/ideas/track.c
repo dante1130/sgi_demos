@@ -172,7 +172,7 @@ void mouse(int b, int s, int x, int y);
 void keyboard(unsigned char c, int x, int y);
 void vis(int);
 
-#if defined _WIN32
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <WinSock2.h>
