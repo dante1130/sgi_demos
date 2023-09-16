@@ -28,11 +28,6 @@ target_include_directories(ideas SYSTEM PRIVATE
 	${LIB_DIR}/freeglut/include
 )
 
-target_include_directories(ideas PRIVATE
-	${SRC_DIR}/time_utils
-)
-
 target_link_libraries(ideas PRIVATE
 	freeglut_static
-	time_utils
 )
