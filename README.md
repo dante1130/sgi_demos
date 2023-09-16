@@ -34,7 +34,7 @@ git submodule update --init --recursive
 
 ## Building the Project
 
-This project uses CMake to generate build files. To build the project, use the following commands:
+This project uses CMake to generate build files.
 
 ### Visual Studio
 
