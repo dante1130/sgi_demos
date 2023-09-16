@@ -1,6 +1,14 @@
 # sgi_demos
 
-SGI demos of OpenGL, built using CMake and modified to cap framerate so it runs consistently on modern hardware.
+SGI demos of OpenGL, built using CMake and modified so it runs on modern hardware and Windows.
+
+Below are the changes made to each demo:
+
+| Demo | Changes |
+| ---- | ------- |
+| Atlantis | Cap to run on a fixed timestep of 30 FPS. |
+| Ideas | Implement `gettimeofday` for Windows. |
+| Yacme | Remove `YACME_DBG` macro so `main` can be defined. |
 
 ## Table of Contents
 
