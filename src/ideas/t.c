@@ -1,13 +1,13 @@
 /*
  * (c) Copyright 1993, Silicon Graphics, Inc.
- * ALL RIGHTS RESERVED 
- * Permission to use, copy, modify, and distribute this software for 
+ * ALL RIGHTS RESERVED
+ * Permission to use, copy, modify, and distribute this software for
  * any purpose and without fee is hereby granted, provided that the above
  * copyright notice appear in all copies and that both the copyright notice
- * and this permission notice appear in supporting documentation, and that 
+ * and this permission notice appear in supporting documentation, and that
  * the name of Silicon Graphics, Inc. not be used in advertising
  * or publicity pertaining to distribution of the software without specific,
- * written prior permission. 
+ * written prior permission.
  *
  * THE MATERIAL EMBODIED ON THIS SOFTWARE IS PROVIDED TO YOU "AS-IS"
  * AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE,
@@ -21,8 +21,8 @@
  * ADVISED OF THE POSSIBILITY OF SUCH LOSS, HOWEVER CAUSED AND ON
  * ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE
  * POSSESSION, USE OR PERFORMANCE OF THIS SOFTWARE.
- * 
- * US Government Users Restricted Rights 
+ *
+ * US Government Users Restricted Rights
  * Use, duplication, or disclosure by the Government is subject to
  * restrictions set forth in FAR 52.227.19(c)(2) or subparagraph
  * (c)(1)(ii) of the Rights in Technical Data and Computer Software
@@ -37,47 +37,25 @@
 #include <GL/glut.h>
 
 float t_data[][2] = {
-	{2.986667, 14.034801},
-	{2.445128, 10.088024},
-	{1.788718, 9.236438},
-	{2.264615, 7.664279},
-	{1.165128, 5.666326},
-	{2.034872, 4.945752},
-	{1.132308, 3.766633},
-	{2.182564, 3.570113},
-	{1.411282, 2.309109},
-	{2.510769, 2.341863},
-	{2.149744, 1.048106},
-	{3.364103, 1.375640},
-	{3.167180, 0.327533},
-	{4.381538, 0.736950},
-	{5.005128, 0.032753},
-	{5.612308, 0.638690},
-	{6.235898, 0.540430},
-	{7.187692, 1.162743},
+    {2.986667, 14.034801}, {2.445128, 10.088024}, {1.788718, 9.236438},
+    {2.264615, 7.664279},  {1.165128, 5.666326},  {2.034872, 4.945752},
+    {1.132308, 3.766633},  {2.182564, 3.570113},  {1.411282, 2.309109},
+    {2.510769, 2.341863},  {2.149744, 1.048106},  {3.364103, 1.375640},
+    {3.167180, 0.327533},  {4.381538, 0.736950},  {5.005128, 0.032753},
+    {5.612308, 0.638690},  {6.235898, 0.540430},  {7.187692, 1.162743},
 
-	{1.985641, 9.039918},
-	{2.133333, 10.186285},
-	{1.509744, 9.023541},
-	{1.608205, 9.662231},
-	{1.050256, 9.023541},
-	{1.050256, 9.334698},
-	{0.196923, 9.007165},
+    {1.985641, 9.039918},  {2.133333, 10.186285}, {1.509744, 9.023541},
+    {1.608205, 9.662231},  {1.050256, 9.023541},  {1.050256, 9.334698},
+    {0.196923, 9.007165},
 
-	{2.363077, 9.711361},
-	{2.264615, 9.023541},
-	{3.282051, 9.563972},
-	{3.446154, 9.023541},
-	{4.069744, 9.531218},
-	{4.299487, 9.236438},
-	{4.644103, 9.613101},
-	{5.251282, 9.875128},
+    {2.363077, 9.711361},  {2.264615, 9.023541},  {3.282051, 9.563972},
+    {3.446154, 9.023541},  {4.069744, 9.531218},  {4.299487, 9.236438},
+    {4.644103, 9.613101},  {5.251282, 9.875128},
 
 };
 
 void draw_t(void) {
-
-    glBegin(GL_TRIANGLE_STRIP);
+	glBegin(GL_TRIANGLE_STRIP);
 	glVertex2fv(t_data[0]);
 	glVertex2fv(t_data[1]);
 	glVertex2fv(t_data[2]);
@@ -96,9 +74,9 @@ void draw_t(void) {
 	glVertex2fv(t_data[15]);
 	glVertex2fv(t_data[16]);
 	glVertex2fv(t_data[17]);
-    glEnd();
+	glEnd();
 
-    glBegin(GL_TRIANGLE_STRIP);
+	glBegin(GL_TRIANGLE_STRIP);
 	glVertex2fv(t_data[18]);
 	glVertex2fv(t_data[19]);
 	glVertex2fv(t_data[20]);
@@ -106,9 +84,9 @@ void draw_t(void) {
 	glVertex2fv(t_data[22]);
 	glVertex2fv(t_data[23]);
 	glVertex2fv(t_data[24]);
-    glEnd();
+	glEnd();
 
-    glBegin(GL_TRIANGLE_STRIP);
+	glBegin(GL_TRIANGLE_STRIP);
 	glVertex2fv(t_data[25]);
 	glVertex2fv(t_data[26]);
 	glVertex2fv(t_data[27]);
@@ -117,9 +95,9 @@ void draw_t(void) {
 	glVertex2fv(t_data[30]);
 	glVertex2fv(t_data[31]);
 	glVertex2fv(t_data[32]);
-    glEnd();
+	glEnd();
 
-    glBegin(GL_LINE_STRIP);
+	glBegin(GL_LINE_STRIP);
 	glVertex2fv(t_data[0]);
 	glVertex2fv(t_data[2]);
 	glVertex2fv(t_data[4]);
@@ -138,9 +116,9 @@ void draw_t(void) {
 	glVertex2fv(t_data[5]);
 	glVertex2fv(t_data[3]);
 	glVertex2fv(t_data[1]);
-    glEnd();
+	glEnd();
 
-    glBegin(GL_LINE_STRIP);
+	glBegin(GL_LINE_STRIP);
 	glVertex2fv(t_data[18]);
 	glVertex2fv(t_data[20]);
 	glVertex2fv(t_data[22]);
@@ -148,9 +126,9 @@ void draw_t(void) {
 	glVertex2fv(t_data[23]);
 	glVertex2fv(t_data[21]);
 	glVertex2fv(t_data[19]);
-    glEnd();
+	glEnd();
 
-    glBegin(GL_LINE_STRIP);
+	glBegin(GL_LINE_STRIP);
 	glVertex2fv(t_data[26]);
 	glVertex2fv(t_data[28]);
 	glVertex2fv(t_data[30]);
@@ -159,7 +137,5 @@ void draw_t(void) {
 	glVertex2fv(t_data[29]);
 	glVertex2fv(t_data[27]);
 	glVertex2fv(t_data[25]);
-    glEnd();
-
+	glEnd();
 }
-
